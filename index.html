@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Murad Ismael | Activist & Humanitarian</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&family=Montserrat:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- Variables & Reset --- */
+        :root {
+            --primary: #0f172a; /* Deep Slate/Navy */
+            --secondary: #1e293b;
+            --accent: #d4af37; /* Metallic Gold */
+            --text: #334155;
+            --bg: #f8fafc;
+            --white: #ffffff;
+            --shadow: 0 10px 30px -10px rgba(0,0,0,0.15);
+            --glass: rgba(255, 255, 255, 0.95);
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Arabic Override */
+        body.rtl {
+            direction: rtl;
+            font-family: 'Cairo', sans-serif;
+            text-align: right;
+        }
+
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; }
+
+        /* --- Scroll Animations (Reveal) --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Navigation --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            transition: var(--transition);
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.4rem;
+            color: var(--primary);
+            letter-spacing: -0.5px;
+            text-transform: uppercase;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--primary);
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--accent);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover::after { width: 100%; }
+        body.rtl .nav-link::after { left: auto; right: 0; }
+
+        .lang-btn {
+            padding: 0.5rem 1.2rem;
+            border: 1px solid var(--primary);
+            background: transparent;
+            color: var(--primary);
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 700;
+            font-family: inherit;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .lang-btn:hover {
+            background: var(--primary);
+            color: var(--accent);
+            border-color: var(--primary);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        /* --- Hero Section --- */
+        header {
+            height: 100vh;
+            min-height: 600px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://i.postimg.cc/SN24MqjL/Picsart-25-11-23-19-58-33-332.jpg') no-repeat center center/cover;
+            filter: brightness(0.4);
+            z-index: -1;
+            background-attachment: fixed; /* Parallax effect */
+        }
+
+        .hero-content {
+            padding: 0 2rem;
+            max-width: 900px;
+            z-index: 2;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+            font-weight: 800;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 300;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--accent);
+            color: var(--primary);
+            font-weight: 700;
+            border-radius: 50px;
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+            transition: var(--transition);
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.4);
+            background: #eecb56;
+        }
+
+        .scroll-down {
+            position: absolute;
+            bottom: 30px;
+            animation: bounce 2s infinite;
+            color: var(--white);
+            font-size: 1.5rem;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-10px);}
+            60% {transform: translateY(-5px);}
+        }
+
+        /* --- General Layout --- */
+        section {
+            padding: 6rem 8%;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-header .divider {
+            width: 60px;
+            height: 4px;
+            background: var(--accent);
+            margin: 0 auto;
+            border-radius: 2px;
+        }
+
+        /* --- About Section --- */
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image-wrapper {
+            position: relative;
+        }
+
+        .about-image-wrapper img {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            position: relative;
+            z-index: 2;
+        }
+
+        .about-image-wrapper::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 3px solid var(--accent);
+            border-radius: 12px;
+            top: 20px;
+            left: 20px; /* LTR Default */
+            z-index: 1;
+        }
+
+        body.rtl .about-image-wrapper::before {
+            left: auto;
+            right: 20px;
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: #64748b;
+        }
+
+        /* --- Timeline --- */
+        .timeline-section {
+            background: var(--white);
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: #e2e8f0;
+            top: 0;
+            bottom: 0;
+            left: 20px; /* LTR */
+            margin-left: -2px;
+        }
+
+        body.rtl .timeline::after {
+            left: auto;
+            right: 20px;
+            margin-right: -2px;
+        }
+
+        .container-time {
+            padding: 10px 40px; /* LTR */
+            position: relative;
+            background-color: inherit;
+            width: 100%;
+        }
+
+        body.rtl .container-time {
+            padding: 10px 40px 10px 0;
+        }
+
+        .container-time::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            left: 11px; /* LTR */
+            background-color: var(--white);
+            border: 4px solid var(--accent);
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        body.rtl .container-time::after {
+            left: auto;
+            right: 11px;
+        }
+
+        .content-time {
+            padding: 20px 30px;
+            background-color: var(--bg);
+            position: relative;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+            border-left: 4px solid var(--accent); /* LTR */
+        }
+
+        body.rtl .content-time {
+            border-left: none;
+            border-right: 4px solid var(--accent);
+        }
+
+        .time-badge {
+            display: inline-block;
+            background: var(--primary);
+            color: var(--white);
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        /* --- Cards (Activism) --- */
+        .cards-wrapper {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid #f1f5f9;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.2);
+        }
+
+        .card-img {
+            height: 240px;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .card:hover .card-img img {
+            transform: scale(1.05);
+        }
+
+        .card-body {
+            padding: 2rem;
+        }
+
+        .card-body h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .card-body ul {
+            padding-inline-start: 1rem;
+        }
+
+        .card-body li {
+            margin-bottom: 0.8rem;
+            font-size: 0.95rem;
+            color: #64748b;
+            list-style: none;
+            position: relative;
+            padding-left: 1.5rem; /* LTR */
+        }
+
+        body.rtl .card-body li {
+            padding-left: 0;
+            padding-right: 1.5rem;
+        }
+
+        .card-body li::before {
+            content: '\f00c'; /* FontAwesome Check */
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: var(--accent);
+            position: absolute;
+            left: 0; /* LTR */
+        }
+
+        body.rtl .card-body li::before {
+            left: auto;
+            right: 0;
+        }
+
+        /* --- Breaking/Alert Section --- */
+        .news-section {
+            background: var(--primary);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            margin: 4rem 8%;
+            padding: 4rem;
+        }
+
+        .news-bg-pattern {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(212,175,55,0.2) 0%, rgba(15,23,42,0) 70%);
+            pointer-events: none;
+        }
+
+        .news-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .news-badge {
+            background: #ef4444;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        .news-content h3 {
+            color: var(--accent);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .news-content p {
+            color: #cbd5e1;
+            margin-bottom: 1.5rem;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background: #020617;
+            color: var(--white);
+            padding: 4rem 8% 2rem;
+            text-align: center;
+        }
+
+        .footer-content h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .social-btn {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 60px;
+            height: 60px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            font-size: 1.8rem;
+            color: var(--white);
+            margin: 2rem 0;
+            transition: var(--transition);
+        }
+
+        .social-btn:hover {
+            background: var(--accent);
+            color: var(--primary);
+            transform: rotate(360deg);
+        }
+
+        .copyright {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+
+        /* --- Responsive Media Queries --- */
+        @media (max-width: 992px) {
+            .about-container { grid-template-columns: 1fr; gap: 3rem; }
+            .hero-content h1 { font-size: 3rem; }
+            section { padding: 4rem 5%; }
+            .news-section { padding: 2rem; margin: 2rem 5%; }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger { display: block; }
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                background: var(--white);
+                flex-direction: column;
+                width: 100%;
+                padding: 2rem;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+                transition: 0.4s;
+            }
+            .nav-menu.active { right: 0; }
+            
+            .hero-content h1 { font-size: 2.2rem; }
+            .about-image-wrapper::before { display: none; }
+        }
+
+        /* Language Visibility */
+        .lang-ar { display: none; }
+        body.rtl .lang-en { display: none; }
+        body.rtl .lang-ar { display: block; }
+
+    </style>
+</head>
+<body id="body">
+
+    <!-- Navigation -->
+    <nav>
+        <a href="#" class="logo">Murad Ismael</a>
+        <div class="hamburger" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+        <div class="nav-menu" id="navMenu">
+            <a href="#about" class="nav-link">
+                <span class="lang-en">About</span>
+                <span class="lang-ar">نبذة عنه</span>
+            </a>
+            <a href="#timeline" class="nav-link">
+                <span class="lang-en">Journey</span>
+                <span class="lang-ar">المسيرة</span>
+            </a>
+            <a href="#work" class="nav-link">
+                <span class="lang-en">Impact</span>
+                <span class="lang-ar">التأثير</span>
+            </a>
+            <a href="#news" class="nav-link">
+                <span class="lang-en">Updates</span>
+                <span class="lang-ar">مستجدات</span>
+            </a>
+            <button class="lang-btn" onclick="toggleLanguage()">
+                <i class="fas fa-globe"></i>
+                <span class="lang-en">العربية</span>
+                <span class="lang-ar">English</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header>
+        <div class="hero-bg"></div>
+        <div class="hero-content reveal">
+            <h1 class="lang-en">Murad Ismael</h1>
+            <h1 class="lang-ar">مراد إسماعيل</h1>
+            
+            <p class="lang-en">Activist | Scientist | Strategist<br>Rebuilding Sinjar, One Stone at a Time.</p>
+            <p class="lang-ar">ناشط | عالم | استراتيجي<br>إعادة بناء سنجار، خطوة بخطوة.</p>
+            
+            <a href="#about" class="cta-btn">
+                <span class="lang-en">Read Biography</span>
+                <span class="lang-ar">السيرة الذاتية</span>
+            </a>
+        </div>
+        <a href="#about" class="scroll-down"><i class="fas fa-chevron-down"></i></a>
+    </header>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="about-container">
+            <div class="about-image-wrapper reveal">
+                <img src="https://i.postimg.cc/pXwHQ7Fx/Picsart-25-11-23-19-43-44-259.jpg" alt="Murad Ismael Speaking">
+            </div>
+            <div class="about-text reveal">
+                <div class="section-header" style="text-align: left;">
+                    <h2 class="lang-en">Who is Murad Ismael?</h2>
+                    <h2 class="lang-ar" style="text-align: right;">من هو مراد إسماعيل؟</h2>
+                    <div class="divider" style="margin: 0;"></div>
+                </div>
+                <br>
+                <div class="lang-en">
+                    <p>Murad Ismael is a prominent Yazidi-American activist and humanitarian. He rose to global prominence as the co-founder of <strong>Yazda</strong>, an organization pivotal in bringing the 2014 Yazidi genocide to the world's attention.</p>
+                    <p>Today, he leads the <strong>Sinjar Academy</strong>, shifting his focus from emergency aid to the long-term reconstruction of the Yazidi homeland through education and empowerment.</p>
+                </div>
+                <div class="lang-ar">
+                    <p>مراد إسماعيل هو ناشط إيزيدي أمريكي بارز في المجال الإنساني. برز اسمه عالمياً كأحد مؤسسي منظمة <strong>يزدا</strong>، التي لعبت دوراً محورياً في لفت انتباه العالم إلى الإبادة الجماعية التي تعرض لها الإيزيديون عام 2014.</p>
+                    <p>اليوم، يقود <strong>أكاديمية سنجار</strong>، حيث يحول تركيزه من المساعدات الطارئة إلى إعادة الإعمار طويل الأمد للوطن الإيزيدي من خلال التعليم والتمكين.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline -->
+    <section id="timeline" class="timeline-section">
+        <div class="section-header reveal">
+            <h2 class="lang-en">Life & Education</h2>
+            <h2 class="lang-ar">الحياة والتعليم</h2>
+            <div class="divider"></div>
+        </div>
+        
+        <div class="timeline">
+            <!-- Item 1 -->
+            <div class="container-time reveal">
+                <div class="content-time">
+                    <span class="time-badge lang-en">Origin</span>
+                    <span class="time-badge lang-ar">الأصل</span>
+                    <h3 class="lang-en">Born in Sinjar, Iraq</h3>
+                    <h3 class="lang-ar">ولد في سنجار، العراق</h3>
+                    <p class="lang-en">Hails from the historical homeland of the Yazidi people.</p>
+                    <p class="lang-ar">ينحدر من الوطن التاريخي للشعب الإيزيدي.</p>
+                </div>
+            </div>
+            <!-- Item 2 -->
+            <div class="container-time reveal">
+                <div class="content-time">
+                    <span class="time-badge lang-en">Education</span>
+                    <span class="time-badge lang-ar">التعليم</span>
+                    <h3 class="lang-en">A Scientist by Training</h3>
+                    <h3 class="lang-ar">عالم بحكم التدريب</h3>
+                    <p class="lang-en">Moved to the USA and earned two Master’s degrees: Environmental Engineering (Norwich University) and Geophysics (University of Houston).</p>
+                    <p class="lang-ar">انتقل إلى الولايات المتحدة وحصل على درجتي ماجستير: الهندسة البيئية (جامعة نورويتش) والجيوفيزياء (جامعة هيوستن).</p>
+                </div>
+            </div>
+            <!-- Item 3 -->
+            <div class="container-time reveal">
+                <div class="content-time">
+                    <span class="time-badge lang-en">Career</span>
+                    <span class="time-badge lang-ar">الحياة المهنية</span>
+                    <h3 class="lang-en">Energy Sector</h3>
+                    <h3 class="lang-ar">قطاع الطاقة</h3>
+                    <p class="lang-en">Worked in Geophysics in Texas before the 2014 crisis changed his life's trajectory.</p>
+                    <p class="lang-ar">عمل في مجال الجيوفيزياء في تكساس قبل أن تغير أزمة 2014 مسار حياته.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Work / Activism -->
+    <section id="work">
+        <div class="section-header reveal">
+            <h2 class="lang-en">Activism & Impact</h2>
+            <h2 class="lang-ar">النشاط والتأثير</h2>
+            <div class="divider"></div>
+        </div>
+
+        <div class="cards-wrapper">
+            <!-- Card 1 -->
+            <div class="card reveal">
+                <div class="card-img">
+                    <img src="https://i.postimg.cc/MKCS04Qp/Picsart-25-11-23-19-44-43-502.jpg" alt="Yazda">
+                </div>
+                <div class="card-body">
+                    <div class="lang-en">
+                        <h3>Yazda (2014-2018)</h3>
+                        <ul>
+                            <li>Co-founded immediately after ISIS attacks.</li>
+                            <li>Documented genocide evidence for the ICC.</li>
+                            <li>Advocated globally at the White House, UK Parliament, and UN.</li>
+                            <li>Worked alongside Nobel Laureate Nadia Murad.</li>
+                        </ul>
+                    </div>
+                    <div class="lang-ar">
+                        <h3>يزدا (2014-2018)</h3>
+                        <ul>
+                            <li>شارك في التأسيس فور وقوع هجمات داعش.</li>
+                            <li>وثق أدلة الإبادة الجماعية للمحكمة الجنائية الدولية.</li>
+                            <li>دعا عالمياً في البيت الأبيض والبرلمان البريطاني والأمم المتحدة.</li>
+                            <li>عمل جنباً إلى جنب مع الحائزة على جائزة نوبل نادية مراد.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="card reveal">
+                <div class="card-img">
+                    <img src="https://i.postimg.cc/FsM4bqJp/Picsart-25-11-23-19-47-48-117.jpg" alt="Sinjar Academy">
+                </div>
+                <div class="card-body">
+                    <div class="lang-en">
+                        <h3>Sinjar Academy</h3>
+                        <ul>
+                            <li>Current role as President & Co-founder.</li>
+                            <li>Provides education and skills to Yazidis in Sinjar.</li>
+                            <li><strong>Vision:</strong> Education prevents future persecution.</li>
+                            <li>Empowering the community to rebuild autonomously.</li>
+                        </ul>
+                    </div>
+                    <div class="lang-ar">
+                        <h3>أكاديمية سنجار</h3>
+                        <ul>
+                            <li>الدور الحالي كرئيس ومؤسس مشارك.</li>
+                            <li>يوفر التعليم والمهارات للإيزيديين في سنجار.</li>
+                            <li><strong>الرؤية:</strong> التعليم يمنع الاضطهاد في المستقبل.</li>
+                            <li>تمكين المجتمع من إعادة البناء بشكل مستقل.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="card reveal">
+                <div class="card-img">
+                    <img src="https://i.postimg.cc/56VThhBj/Picsart-25-11-23-19-58-33-332.jpg" alt="Political Strategy">
+                </div>
+                <div class="card-body">
+                    <div class="lang-en">
+                        <h3>Political Strategy</h3>
+                        <ul>
+                            <li>Vocal critic of security vacuums in Sinjar.</li>
+                            <li>Publishes op-eds in Rudaw, Al-Monitor, and Jummar.</li>
+                            <li>Warns against militia destabilization.</li>
+                            <li>Advocates for international oversight in disputed territories.</li>
+                        </ul>
+                    </div>
+                    <div class="lang-ar">
+                        <h3>الاستراتيجية السياسية</h3>
+                        <ul>
+                            <li>ناقد صريح للفراغ الأمني في سنجار.</li>
+                            <li>ينشر مقالات رأي في روداو والمونيتور وجمّار.</li>
+                            <li>يحذر من زعزعة الاستقرار من قبل الميليشيات.</li>
+                            <li>يدعو للرقابة الدولية في المناطق المتنازع عليها.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Breaking News / 2025 -->
+    <section id="news" class="news-section reveal">
+        <div class="news-bg-pattern"></div>
+        <div class="news-header">
+            <span class="news-badge">2025 Update</span>
+            <div class="lang-en">Recent Developments</div>
+            <div class="lang-ar">آخر التطورات</div>
+        </div>
+
+        <div class="news-content">
+            <div class="lang-en">
+                <h3>Legal Challenges & Political Stance</h3>
+                <p>In April 2025, an Iraqi court in Nineveh issued an arrest warrant for Murad Ismael following a complaint by the Ministry of Migration. Murad publicly stated the warrant was "politically motivated," aiming to silence critics exposing failures in supporting displaced Yazidis.</p>
+                <p style="font-weight: 600; color: var(--white);">He remains steadfast in his advocacy despite these pressures.</p>
+            </div>
+            <div class="lang-ar">
+                <h3>التحديات القانونية والموقف السياسي</h3>
+                <p>في أبريل 2025، أصدرت محكمة عراقية في نينوى مذكرة اعتقال بحق مراد إسماعيل إثر شكوى من وزارة الهجرة. صرح مراد علناً بأن المذكرة "ذات دوافع سياسية"، تهدف لإسكات المنتقدين الذين يكشفون القصور في دعم النازحين الإيزيديين.</p>
+                <p style="font-weight: 600; color: var(--white);">وهو لا يزال ثابتاً في دفاعه عن قضيته رغم هذه الضغوط.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content reveal">
+            <h3 class="lang-en">Follow the Journey</h3>
+            <h3 class="lang-ar">تابع الرحلة</h3>
+            <p class="lang-en">Supporting the Yazidi Cause & Sinjar Reconstruction</p>
+            <p class="lang-ar">دعم القضية الإيزيدية وإعادة إعمار سنجار</p>
+            
+            <a href="https://www.instagram.com/murad_ismael1?igsh=MXczdndteDZ3ZTBhcQ==" target="_blank" class="social-btn">
+                <i class="fab fa-instagram"></i>
+            </a>
+            
+            <div class="copyright">
+                &copy; 2025 Murad Ismael. Designed with respect.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Language Toggle
+        function toggleLanguage() {
+            const body = document.getElementById('body');
+            const isRTL = body.classList.contains('rtl');
+            
+            if (isRTL) {
+                body.classList.remove('rtl');
+                document.documentElement.lang = 'en';
+            } else {
+                body.classList.add('rtl');
+                document.documentElement.lang = 'ar';
+            }
+        }
+
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('active');
+        }
+
+        // Scroll Reveal Animation
+        window.addEventListener('scroll', reveal);
+
+        function reveal() {
+            var reveals = document.querySelectorAll('.reveal');
+
+            for (var i = 0; i < reveals.length; i++) {
+                var windowheight = window.innerHeight;
+                var revealtop = reveals[i].getBoundingClientRect().top;
+                var revealpoint = 150;
+
+                if (revealtop < windowheight - revealpoint) {
+                    reveals[i].classList.add('active');
+                }
+            }
+        }
+        
+        // Trigger once on load
+        reveal();
+    </script>
+</body>
+</html>
